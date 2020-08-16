@@ -1,0 +1,46 @@
+:root {
+  --vPurple: #50f;
+  --vGreen: #0f0;
+
+  --vFontBody: 3rem;
+  --vFont5: 5rem;
+
+  --vBorderRadius: 0.8rem;
+
+  font-size: 60%;
+}
+
+body {
+  background-color: var(--vPurple);
+  color: #fff;
+  
+  text-align: center;
+  font-size: var(--vFontBody);
+}
+
+header > h1 {
+  font-size: var(--vFont5);
+}
+
+.binary-input {
+  text-align: center;
+
+  border: 0;
+  border-radius: var(--vBorderRadius);
+}
+
+.binary-convert {
+  background-color: var(--vGreen);
+  color: var(--vPurple);
+
+  border: 0;
+  border-radius: var(--vBorderRadius);
+}
+
+#result > p {
+  color: var(--vGreen);
+
+  margin-top: 0;
+
+  padding-bottom: 2rem;
+}
