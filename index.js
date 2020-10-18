@@ -1,53 +1,47 @@
-function convertToDecimal(event) {
+function convert(event) {
   const target = event.target;
-  const value = convertFromBinaryToDecimal(target.value);
-  const element = selectOneElement(".decimal-input");
+  const binaryInput = selectOneElement(".binary-input");
+  const decimalInput = selectOneElement(".decimal-input");
+  const output = selectOutputElement(target, binaryInput, decimalInput);
 
-  element.value = value;
+  output.innerHTML = convertInput(target, binaryInput, decimalInput);
 }
 
-function convertToBinary(event) {
-  const target = event.target;
-  const value = target.value;
-  const element = selectOneElement(".binary-input");
+function convertInput(target, binaryInput, decimalInput) {
+  const value = target.innerHTML;
+  let convertedValue;
 
-  element.value = value;
+  if (target === binaryInput && isBinary(value)) convertedValue = convertToDecimal(value);
+  else if (target === decimalInput && isDecimal(value)) convertedValue = convertToBinary(value);
+  else if (value == "") convertedValue = "";
+  else convertedValue = "Invalid input!";
+
+  return convertedValue;
 }
 
-function showResult() {
-  const binary = readInput();
-  const decimal = convertFromBinaryToDecimal(binary);
-  
-  if (wasConverted(decimal)) showConvertedValue(decimal);
-  else showInvalidInput();
+function selectOutputElement(target, binaryInput, decimalInput) {
+  return target === binaryInput ? decimalInput : binaryInput;
 }
 
-function showConvertedValue(decimal) {
-  const elementResult = selectOneElement("#result");
-  
-  elementResult.firstElementChild
-    .innerHTML = decimal;
+function convertToBinary(decimal) {
+  let binary = "";
+  let aux = decimal;
 
-  elementResult.hidden = false;
+  if (aux == 0) return 0;
+
+  while (aux > 0) {
+    binary = binary.concat(aux%2);
+    aux = Math.floor(aux/2);
+  }
+
+  return reverseString(binary);
 }
 
-function showInvalidInput() {
-  alert("You can only input 0s and 1s");
+function reverseString(value) {
+  return value.split("").reverse().join("");
 }
 
-function wasConverted(decimal) {
-  return decimal !== null;
-}
-
-function convertFromBinaryToDecimal(binary) {
-  let decimal = nullIfNullElseZero(binary);
-
-  if (binary) decimal = convert(binary);
-
-  return decimal;
-}
-
-function convert(binary) {
+function convertToDecimal(binary) {
   let decimal = 0;
   const binaryLastIndex = binary.length - 1;
 
@@ -58,30 +52,12 @@ function convert(binary) {
   return decimal;
 }
 
-function nullIfNullElseZero(value) {
-  return value === null ? null : 0;
-}
-
-function readInput() {
-  const input = selectOneElement(".binary-input");
-  const value = validateInputValue(input);
-  
-  return value;
-}
-
-function validateInputValue(input) {
-  let value = input.value;
-  const valid = isBinary(value);
-
-  return valueIfValidElseNull(value, valid);
-}
-
-function valueIfValidElseNull(value, valid) {
-  return valid ? value : null;
-}
-
 function selectOneElement(description) {
   return document.querySelector(description);
+}
+
+function isDecimal(value) {
+  return value.match(new RegExp("^[0-9]+$")) ? true : false;
 }
 
 function isBinary(value) {

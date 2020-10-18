@@ -72,16 +72,32 @@ header > h1 {
 .binary-input,
 .decimal-input {
   grid-area: input;
-  text-align: center;
-  justify-content: center;
-  white-space: normal;
+  
+  background-color: white;
+  color: black;
+
+  line-height: 3rem;
+  font-size: 2.5rem;
 
   border: 0;
   border-radius: var(--vBorderRadius);
 
-  padding: .2rem 3rem;
+  padding: .5rem;
 
-  resize: none;
+  max-width: 90vw;
+}
+
+.binary-input:empty::before,
+.decimal-input:empty::before {
+  color: lightgray;
+}
+
+.binary-input:empty::before {
+  content: "Input 0 or 1";
+}
+
+.decimal-input:empty::before {
+  content: "Input from 0 to 9";
 }
 
 footer {
