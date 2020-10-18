@@ -1,6 +1,6 @@
 ## Base Converter
 [![](https://img.shields.io/static/v1?label=github-pages&message=active&color=#28a745)](https://gccunha015.github.io/base-converter/)
-[![](https://img.shields.io/static/v1?label=MIT&message=license&color=#28a745)](./LICENSE)
+[![](https://img.shields.io/static/v1?label=license&message=MIT&color=#28a745)](./LICENSE)
 
 ### Summary
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Description](#description)
